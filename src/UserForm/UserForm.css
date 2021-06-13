@@ -1,0 +1,37 @@
+.main-form {
+  margin: 2rem auto;
+  padding: 1rem;
+  width: 50%;
+  background-color: #eee;
+  border-radius: 1rem;
+  font-size: 18px;
+  font-weight: 700;
+  color: #262641;
+}
+
+.form-section {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-section input {
+  margin-top: 8px;
+  color: rgb(58, 57, 57);
+  border: 1px #ccc solid;
+  font-size: 18px;
+  height: 1.7rem;
+}
+
+.button {
+  padding: 5px 1rem;
+  font-size: 20px;
+  color: #eee;
+  border-style: none;
+  background-color: #513f88;
+}
+
+.button:hover {
+  background-color: #2f2f69;
+  transition: background-color 0.3s;
+}

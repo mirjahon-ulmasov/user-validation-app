@@ -1,0 +1,10 @@
+.user {
+  margin: 10px 0;
+  padding: 8px;
+  font-size: 18px;
+  border: 1px #ccc solid;
+}
+
+.user:hover {
+  background-color: #e4e3e3;
+}
