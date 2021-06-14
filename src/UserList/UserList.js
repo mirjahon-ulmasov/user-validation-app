@@ -1,7 +1,7 @@
 import React from 'react';
 
 import UserItem from './User';
-import './UserList.css';
+import styles from './UserList.module.css';
 
 const UserList = props => {
   const userList =
@@ -10,14 +10,14 @@ const UserList = props => {
         return <UserItem key={user.id} name={user.userName} age={user.age} />;
       })
     ) : (
-      <div className="empty-list">
+      <div className={styles.empty}>
         <h2>No Users Found</h2>
         <hr />
       </div>
     );
 
   return (
-    <div className="main-list">
+    <div className={styles['main-list']}>
       <ul>{userList}</ul>
     </div>
   );

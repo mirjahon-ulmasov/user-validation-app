@@ -3,6 +3,7 @@
   padding: 1rem;
   width: 50%;
   background-color: #eee;
+  box-shadow: 0 2px 1rem rgba(0, 0, 0, 0.4);
   border-radius: 1rem;
   font-size: 18px;
   font-weight: 700;
@@ -21,17 +22,4 @@
   border: 1px #ccc solid;
   font-size: 18px;
   height: 1.7rem;
-}
-
-.button {
-  padding: 5px 1rem;
-  font-size: 20px;
-  color: #eee;
-  border-style: none;
-  background-color: #513f88;
-}
-
-.button:hover {
-  background-color: #2f2f69;
-  transition: background-color 0.3s;
 }
