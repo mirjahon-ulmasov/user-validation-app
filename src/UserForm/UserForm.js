@@ -1,21 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import ErrorMessage from '../UI/ErrorMessage';
 import Button from '../UI/Button';
 import styles from './UserForm.module.css';
 
 const UserForm = props => {
-  const [username, setUserName] = useState('');
-  const [age, setAge] = useState('');
+  // Uncontrolled Component
+  // We can use refs instead of states to get data
+  const nameInputRef = useRef();
+  const ageInputRef = useRef();
+
+  // Controlled Component
   const [error, setError] = useState();
-
-  const userChangeHandler = event => {
-    setUserName(event.target.value);
-  };
-
-  const ageChangeHandler = event => {
-    setAge(event.target.value);
-  };
 
   const errorHandler = () => {
     setError(null);
@@ -23,12 +19,16 @@ const UserForm = props => {
 
   const submitHandler = event => {
     event.preventDefault();
-    if (username.trim() === '' || age.trim() === '') {
+
+    const enteredName = nameInputRef.current.value;
+    const enteredAge = ageInputRef.current.value;
+
+    if (enteredName.trim() === '' || enteredAge.trim() === '') {
       setError({
         title: 'Invalid input',
         description: 'Please enter a valid name and age (non-empty values).',
       });
-    } else if (parseInt(age.trim()) < 1) {
+    } else if (+enteredAge.trim() < 1) {
       setError({
         title: 'Invalid age',
         description: 'Please enter a valid age (> 0)',
@@ -36,36 +36,26 @@ const UserForm = props => {
     } else {
       const user = {
         id: Math.random().toString(),
-        userName: username,
-        age: age,
+        userName: enteredName,
+        age: enteredAge,
       };
       props.onAddUser(user);
 
-      setUserName('');
-      setAge('');
+      nameInputRef.current.value = '';
+      ageInputRef.current.value = '';
     }
   };
 
   return (
-    <div>
+    <React.Fragment>
       <form onSubmit={submitHandler} className={styles['main-form']}>
         <div className={styles['form-section']}>
           <label htmlFor="username">Username</label>
-          <input
-            id="username"
-            type="text"
-            value={username}
-            onChange={userChangeHandler}
-          ></input>
+          <input id="username" type="text" ref={nameInputRef}></input>
         </div>
         <div className={styles['form-section']}>
           <label htmlFor="age">Age (Years)</label>
-          <input
-            id="age"
-            type="number"
-            value={age}
-            onChange={ageChangeHandler}
-          ></input>
+          <input id="age" type="number" ref={ageInputRef}></input>
         </div>
         <Button type="submit">Add User</Button>
       </form>
@@ -76,7 +66,7 @@ const UserForm = props => {
           description={error.description}
         />
       )}
-    </div>
+    </React.Fragment>
   );
 };
 
